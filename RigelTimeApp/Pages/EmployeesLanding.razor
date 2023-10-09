@@ -1,0 +1,40 @@
+﻿@page "/employeeslanding"
+@inject NavigationManager navManager
+@inject IJSRuntime JS
+
+<ul class="nav nav-pills gap-2 p-1 mb-1 small bg-primary rounded-5 shadow-sm" id="pillnav"
+    role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white)">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active rounded-5" id="dashboard-tab" data-bs-toggle="tab" type="button" role="tab" aria-selected="true" @onclick=@GoToEmployeesLandingPage>Dashboard</button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link active rounded-5" id="employee-tab" data-bs-toggle="tab" type="button" role="tab" aria-selected="false" @onclick="OnEmployeeTabClicked">Employees</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active rounded-5" id="orgstructure-tab" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Organization Structure</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active rounded-5" id="customfields-tab" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Custom Fields</button>
+    </li>
+</ul>
+
+<div>
+    <h1>Dashboard items go here. Coming soon</h1>
+</div>
+
+
+@code {
+    string text = "Dashboard items go here";
+    protected override void OnInitialized()
+    {
+        
+    }
+    private void OnEmployeeTabClicked()
+    {
+        navManager.NavigateTo("/employees", true);
+    }
+    private void GoToEmployeesLandingPage()
+    {
+        navManager.NavigateTo("/employeeslanding", true);
+    }
+}

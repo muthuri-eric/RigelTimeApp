@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevExpress.Blazor" Version="22.2.*" />
+    <PackageReference Include="DevExpress.Reporting.Core" Version="22.2.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DBHelper\DBHelper.csproj" />
+    <ProjectReference Include="..\RigelTimeAppService\RigelTimeAppService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\ShiftManagement\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,40 @@
+﻿@page "/clockinfo"
+@inject IEmployeeData employeeData
+@inject IAttendanceData attendanceData
+
+<ul class="nav nav-pills gap-2 p-1 mb-1 small bg-primary rounded-5 shadow-sm" id="pillnav"
+    role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white)">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active rounded-5" id="dashboard-tab" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">Clock activity</button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link active rounded-5" id="employee-tab" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Clock Management</button>
+    </li>
+</ul>
+
+@if(attendancelist is not null){
+    <DxGrid Data="attendancelist">
+        <Columns>
+            <DxGridDataColumn FieldName="EmployeeId"/>
+            <DxGridDataColumn FieldName="EmployeeName" />
+            <DxGridDataColumn FieldName="ClockDateTime" />
+            <DxGridDataColumn FieldName="Entry" DisplayFormat="T" />
+            <DxGridDataColumn FieldName="Exit" DisplayFormat="T"/>
+        </Columns>
+    </DxGrid>
+}
+
+
+@code {
+    List<FriendlyAttendanceModel> attendancelist = new();
+    protected override async Task OnInitializedAsync()
+    {
+        var attendance = await attendanceData.GetAllAttendanceAsync();
+        foreach (AttendanceModel? attendanceModel in attendance)
+        {
+            var employee = await employeeData.GetEmployeeByIdAsync(attendanceModel.EmployeeId);
+            attendancelist.Add(new FriendlyAttendanceModel(attendanceModel, employee));
+        }
+
+    }
+}

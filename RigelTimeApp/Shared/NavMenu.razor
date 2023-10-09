@@ -1,0 +1,25 @@
+﻿<div class="sidebar @StateCssClass">
+<DxTreeView AllowSelectNodes="false" CssClass="app-sidebar">
+    <Nodes>
+            <DxTreeViewNode NavigateUrl="organization" Text="Organization Structure"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="employeeslanding" Text="Employee Management"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="clockinfo" Text="Clock Information"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="devices" Text="Device Management"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="attendance" Text="Time and Attendance"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="shifts" Text="Shift Management"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="leave" Text="Leave Management"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="accesscontrol" Text="Access Control"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="rules" Text="Rules and Notifications"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="services" Text="Services"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="exports" Text="Exports"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="integration" Text="Integration"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="reports" Text="Reports"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="audit" Text="Audit"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="security" Text="Security"></DxTreeViewNode>
+    </Nodes>
+</DxTreeView>
+</div>
+
+@code {
+    [Parameter] public string? StateCssClass { get; set; }
+}

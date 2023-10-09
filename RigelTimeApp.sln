@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RigelTime", "DeviceAccess\RigelTime.csproj", "{04468C5D-B9A5-4DD0-AA1D-5875F09AD288}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBHelper", "DBHelper\DBHelper.csproj", "{18F8D507-966E-4CB5-A699-26E73EFC16E0}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "RigelTimeDB", "RigelTimeDB\RigelTimeDB.sqlproj", "{2D140C9A-F4DC-46BC-90B2-6CB274649102}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RigelTimeAppService", "RigelTimeAppService\RigelTimeAppService.csproj", "{D33FA215-5257-48EE-8051-3E9A2712A895}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RigelTimeApp", "RigelTimeApp\RigelTimeApp.csproj", "{0E22CE29-B428-4C52-8EC1-EF53771D9F45}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04468C5D-B9A5-4DD0-AA1D-5875F09AD288}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04468C5D-B9A5-4DD0-AA1D-5875F09AD288}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04468C5D-B9A5-4DD0-AA1D-5875F09AD288}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04468C5D-B9A5-4DD0-AA1D-5875F09AD288}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18F8D507-966E-4CB5-A699-26E73EFC16E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18F8D507-966E-4CB5-A699-26E73EFC16E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18F8D507-966E-4CB5-A699-26E73EFC16E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18F8D507-966E-4CB5-A699-26E73EFC16E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D140C9A-F4DC-46BC-90B2-6CB274649102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D140C9A-F4DC-46BC-90B2-6CB274649102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D140C9A-F4DC-46BC-90B2-6CB274649102}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{2D140C9A-F4DC-46BC-90B2-6CB274649102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D140C9A-F4DC-46BC-90B2-6CB274649102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D140C9A-F4DC-46BC-90B2-6CB274649102}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D33FA215-5257-48EE-8051-3E9A2712A895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D33FA215-5257-48EE-8051-3E9A2712A895}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D33FA215-5257-48EE-8051-3E9A2712A895}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D33FA215-5257-48EE-8051-3E9A2712A895}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E22CE29-B428-4C52-8EC1-EF53771D9F45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E22CE29-B428-4C52-8EC1-EF53771D9F45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E22CE29-B428-4C52-8EC1-EF53771D9F45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E22CE29-B428-4C52-8EC1-EF53771D9F45}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F72A4442-0005-4279-A19E-812D1F17AE88}
+	EndGlobalSection
+EndGlobal

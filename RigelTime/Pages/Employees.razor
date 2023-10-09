@@ -1,0 +1,149 @@
+﻿@page "/Employee"
+@using DBHelper.Models;
+
+
+<DxButton SizeMode="SizeMode.Medium" Text="Add" Click="@ShowDialog"></DxButton>
+
+
+<DxGrid Data="@EmployeeModels"
+        ShowFilterRow="true"
+        PagerNavigationMode="PagerNavigationMode.InputBox">
+    <Columns>
+        <DxGridDataColumn FieldName="Id" Caption=" " Width="5px" MinWidth="5" TextAlignment="GridTextAlignment.Center" AllowGroup="false" AllowSort="false">
+            @*            <CellDisplayTemplate>@GetIssueTypeIconHtml((context.DataItem as Issue).Type)</CellDisplayTemplate>
+            <FilterRowCellTemplate></FilterRowCellTemplate>*@
+        </DxGridDataColumn>
+        <DxGridDataColumn FieldName="EmployeeCode" Caption="Subject" MinWidth="200" AllowGroup="false">
+            @*            <CellDisplayTemplate>
+            @{
+            var issue = (context.DataItem as Issue);
+            }
+            <button class="btn btn-link grid-btn-link" @onclick="() => GotoDetailsViewClick(issue)">@(issue.Name)</button>
+            </CellDisplayTemplate>*@
+        </DxGridDataColumn>
+        <DxGridDataColumn FieldName="EmployeeID" Caption="Project" GroupIndex="0" Width="220px" TextAlignment="GridTextAlignment.Left" SortMode="GridColumnSortMode.DisplayText">
+            @*           <FilterRowCellTemplate>
+            <DxComboBox Value="(long?)context.FilterRowValue"
+            ValueChanged="(long? v) => context.FilterRowValue = v"
+            Data="ProjectList" ValueFieldName="ID" TextFieldName="Name"
+            FilteringMode="DataGridFilteringMode.Contains"
+            ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto" />
+            </FilterRowCellTemplate>*@
+        </DxGridDataColumn>
+        <DxGridDataColumn FieldName="EmployeeName" Caption="Owner" Width="140px" MinWidth="100" TextAlignment="GridTextAlignment.Left" SortMode="GridColumnSortMode.DisplayText">
+            @*            <FilterRowCellTemplate>
+            <DxComboBox Value="(long?)context.FilterRowValue"
+            ValueChanged="(long? v) => context.FilterRowValue = v"
+            Data="UserList" ValueFieldName="ID" TextFieldName="FullName"
+            FilteringMode="DataGridFilteringMode.Contains"
+            ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto" />
+            </FilterRowCellTemplate>*@
+        </DxGridDataColumn>
+        <DxGridDataColumn FieldName="IsDeviceSynced" Caption="Assignee" Width="140px" MinWidth="100" TextAlignment="GridTextAlignment.Left" SortMode="GridColumnSortMode.DisplayText">
+            @*            <FilterRowCellTemplate>
+            <DxComboBox Value="(long?)context.FilterRowValue"
+            ValueChanged="(long? v) => context.FilterRowValue = v"
+            Data="UserList" ValueFieldName="ID" TextFieldName="FullName"
+            FilteringMode="DataGridFilteringMode.Contains"
+            ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto" />
+            </FilterRowCellTemplate>*@
+        </DxGridDataColumn>
+        <DxGridDataColumn FieldName="LastChanged" Caption="Status" Width="140px" MinWidth="140" TextAlignment="GridTextAlignment.Left">
+            @*            <FilterRowCellTemplate>
+            <DxComboBox Value="(IssueStatus?)context.FilterRowValue"
+            ValueChanged="(IssueStatus? v) => context.FilterRowValue = v"
+            Data="StatusList"
+            ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Auto" />
+            </FilterRowCellTemplate>*@
+        </DxGridDataColumn>
+        <DxGridDataColumn FieldName="Templates" Caption="Created" Width="120px" MinWidth="120">
+            @*            <FilterRowCellTemplate>
+            <DxDateEdit Date="(DateTime?)context.FilterRowValue"
+            DateChanged="(DateTime? v) => context.FilterRowValue = v"
+            ClearButtonDisplayMode="DataEditorClearButtonDisplayMode.Never" />
+            </FilterRowCellTemplate>*@
+        </DxGridDataColumn>
+
+    </Columns>
+    <GroupSummary>
+        <DxGridSummaryItem FieldName="ID" SummaryType="GridSummaryItemType.Count" />
+    </GroupSummary>
+    <TotalSummary>
+        <DxGridSummaryItem FieldName="ID" SummaryType="GridSummaryItemType.Count" FooterColumnName="Name" />
+    </TotalSummary>
+</DxGrid>
+
+<DxWindow @ref=windowRef
+          @bind-Visible="windowVisible"
+          AllowResize=true
+          HeaderText="Edit contact"
+          ShowHeader="true" ShowFooter="true" Width="500px"
+>
+    <BodyTemplate Context="Context">
+            <div style="padding: 20px">
+        <DxFormLayout>
+                <DxFormLayoutItem Caption="Contact Name:" ColSpanMd="12">
+                    <Template>
+                    <DxTextBox Text="Nancy Davolio" />
+                </Template>
+                </DxFormLayoutItem>
+                <DxFormLayoutItem Caption="Birth Date:" ColSpanMd="12">
+                    <Template>
+                        <DxDateEdit Date="DateTime.Now.AddYears(-30)" />
+                    </Template>
+                </DxFormLayoutItem>
+                <DxFormLayoutItem Caption="Years Worked:" ColSpanMd="12">
+                    <Template>
+                        <DxSpinEdit Value="3" />
+                    </Template>
+                </DxFormLayoutItem>
+                <DxFormLayoutItem Caption="Email:" ColSpanMd="12">
+                    <Template>
+                        <DxTextBox Text="NancyDavolio@sample.com" />
+                    </Template>
+                </DxFormLayoutItem>
+            </DxFormLayout>
+        </div>
+    </BodyTemplate>
+    <FooterTextTemplate>
+        <DxButton RenderStyle="ButtonRenderStyle.Primary" Text="OK" Click="@context.CloseCallback" />
+        <DxButton RenderStyle="ButtonRenderStyle.Secondary" Text="Cancel" Click="@context.CloseCallback" />
+    </FooterTextTemplate>
+
+</DxWindow>
+
+
+
+
+
+@code{
+    DxWindow windowRef;
+    DxPopup popuptest;
+    ElementReference popupTarget;
+    bool popupVisible = true;
+    bool windowVisible = true;
+    List<EmployeeModel> EmployeeModels = new();
+    string GetButtonText() => !windowVisible ? "SHOW A WINDOW" : "CLOSE A WINDOW";
+    async Task TogglePopupVisibilityAsync()
+    {
+        if (windowVisible)
+            await windowRef.CloseAsync();
+        else
+            await windowRef.ShowAtAsync(popupTarget);
+    }
+    protected override void  OnInitialized(){
+        EmployeeModels.Add(new EmployeeModel
+            {
+                Id = 1,
+                EmployeeCode = "A001",
+                EmployeeId = "001",
+                EmployeeName = "Eric",
+                IsDeviceSynced = false,
+                Templates = 1,
+                LastChanged = DateTime.Now
+            });
+    }
+    private void ShowDialog(){
+        windowRef.ShowAsync();
+    }
+}
