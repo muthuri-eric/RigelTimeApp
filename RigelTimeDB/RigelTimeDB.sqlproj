@@ -93,8 +93,8 @@
     <Build Include="Dbo\Stored Procedures\spEmployeeOrgChartDetail_GetAll.sql" />
     <Build Include="Dbo\Stored Procedures\spEmployeeOrgChartDetail_GetById.sql" />
     <Build Include="Dbo\Stored Procedures\spOrganizationChartHeader_GetAll.sql" />
-    <Build Include="Dbo\Stored Procedures\spOrganizationChartHeader_GetById.sql" />
     <Build Include="Dbo\Stored Procedures\spOrganizationChartItem_GetAll.sql" />
     <Build Include="Dbo\Stored Procedures\spOrganizationChartItem_GetById.sql" />
+    <Build Include="Dbo\Stored Procedures\spOrganizationChartItem_GetByHeaderId.sql" />
   </ItemGroup>
 </Project>

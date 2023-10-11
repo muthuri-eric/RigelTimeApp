@@ -6,4 +6,5 @@ public interface IAttendanceData
 {
     Task SaveAttendanceDataAsync(AttendanceModel attendance);
     Task<IEnumerable<AttendanceModel?>> GetAllAttendanceAsync();
+    Task<IEnumerable<AttendanceModel?>> GetAttendanceByIdAsync(int employeeId);
 }
