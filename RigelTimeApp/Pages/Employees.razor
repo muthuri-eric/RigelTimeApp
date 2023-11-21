@@ -111,22 +111,22 @@
             <DxFormLayout >
                 <DxFormLayoutItem Caption="Name:" ColSpanMd="12">
                     <Template>
-                        <DxTextBox @bind-Text="@EmployeeName" />
+                        <DxTextBox @bind-Text="@employeeName" />
                     </Template>
                 </DxFormLayoutItem>
                 <DxFormLayoutItem Caption="PIN:" ColSpanMd="12">
                     <Template>
-                        <DxTextBox @bind-Text="@EmployeePin" DisplayFormat="" />
+                        <DxTextBox @bind-Text="@employeePin" DisplayFormat="" />
                     </Template>
                 </DxFormLayoutItem>
                 <DxFormLayoutItem Caption="Employee Code:" ColSpanMd="12">
                     <Template>
-                        <DxTextBox @bind-Text="@EmployeeCode" />
+                        <DxTextBox @bind-Text="@employeeCode" />
                     </Template>
                 </DxFormLayoutItem>
                 <DxFormLayoutItem Caption="IsDeviceSynced:" ColSpanMd="12">
                     <Template>
-                        <DxCheckBox @bind-Checked="@IsDeviceSynced"/>
+                        <DxCheckBox @bind-Checked="@isDeviceSynced"/>
                     </Template>
                 </DxFormLayoutItem>
             </DxFormLayout>
@@ -142,17 +142,17 @@
 
 @code {
 
-    IGrid employeeGrid { get; set; }
-    DxWindow windowRef;
-    bool windowVisible = false;
-    public string EmployeeName { get; set; }
-    public string EmployeePin { get; set; }
-    public string EmployeeCode { get; set; }
-    public bool IsDeviceSynced { get; set; } = false;
-    public DateTime ModifiedDate { get; set; }
-    private EmployeeModel employee;
-    IEnumerable<EmployeeModel>? EmployeeModels;
-    string GetButtonText() => !windowVisible ? "SHOW A WINDOW" : "CLOSE A WINDOW";
+    //IGrid employeeGrid { get; set; }
+    DxWindow? windowRef;
+    private bool windowVisible = false;
+    private string? employeeName;
+    private string? employeePin;
+    private string? employeeCode;
+    private bool isDeviceSynced = false;
+    private DateTime modifiedDate;
+    private EmployeeModel? employee;
+    private IEnumerable<EmployeeModel?>? EmployeeModels;
+    private string GetButtonText() => !windowVisible ? "SHOW A WINDOW" : "CLOSE A WINDOW";
 
     protected override async Task OnInitializedAsync()
     {
@@ -161,15 +161,15 @@
     private void ShowDialog()
     {
         windowVisible = true;
-        windowRef.ShowAsync();
+        windowRef!.ShowAsync();
     }
     private async void Submit(){
         await employeeData.SaveEmployeeDataAsync(new EmployeeModel
             {
-                EmployeeCode = EmployeeCode,
-                EmployeeId = Convert.ToInt32(EmployeePin),
-                EmployeeName = EmployeeName,
-                IsDeviceSynced = IsDeviceSynced,
+                EmployeeCode = employeeCode!,
+                EmployeeId = Convert.ToInt32(employeePin),
+                EmployeeName = employeeName!,
+                IsDeviceSynced = isDeviceSynced,
                 Templates = 0,
                 LastChanged = DateTime.Now
             });

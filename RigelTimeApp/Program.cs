@@ -19,6 +19,7 @@ builder.Services.AddSingleton<IDeviceUserData, DeviceUserData>();
 builder.Services.AddSingleton<ITemplateData, TemplateData>();
 builder.Services.AddSingleton<IDeviceAttlogData, DeviceAttlogData>();
 builder.Services.AddSingleton<IEmployeeData, EmployeeData>();
+builder.Services.AddSingleton<ICompanyData, CompanyData>();
 builder.Services.Configure<DevExpress.Blazor.Configuration.GlobalOptions>(options =>
 {
     options.BootstrapVersion = DevExpress.Blazor.BootstrapVersion.v5;

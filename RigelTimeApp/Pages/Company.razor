@@ -1,0 +1,191 @@
+﻿@page "/company"
+@inject ICompanyData companyData
+
+<ul class="nav nav-pills gap-2 p-1 mb-1 small bg-light rounded-5 shadow-sm" id="pillnav" role="tablist" style="">
+    <li class="nav-item" role="presentation">
+        <button class="nav-tabs active rounded-5" id="dashboard-tab" data-bs-toggle="tab" type="button" role="tab"
+        aria-selected="true" @onclick="@ShowCompanyGrid"> Company </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-tabs active rounded-5" id="dashboard-tab" data-bs-toggle="tab" type="button" role="tab"
+                aria-selected="true" @onclick="@ShowOrgStructure">
+            Organization and Structure
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-tabs active rounded-5" id="dashboard-tab" data-bs-toggle="tab" type="button" role="tab" 
+        aria-selected="true">Settings and Policies</button>
+    </li>
+</ul>
+@if (!isCompanyTabClicked)
+{
+    <DxGrid @ref="CompanyGrid"
+            Data="Companies"
+            PageSize="12"
+            KeyFieldName="EmployeeId"
+            ValidationEnabled="false"
+            CustomizeEditModel="Grid_CustomizeEditModel"
+            EditModelSaving="Grid_EditModelSaving"
+            KeyboardNavigationEnabled="Params.KeyboardNavigationEnabled">
+        <Columns>
+            <DxGridCommandColumn Width="160px" />
+            <DxGridDataColumn FieldName="AccountId" MinWidth="80" />
+            <DxGridDataColumn FieldName="Code" MinWidth="80" />
+            <DxGridDataColumn FieldName="Description" MinWidth="100" />
+            <DxGridDataColumn FieldName="Industry" MinWidth="120" />
+            <DxGridDataColumn FieldName="CycleId" Width="10%" MinWidth="80" />
+            <DxGridDataColumn FieldName="Created" Width="10%" MinWidth="80" />
+            <DxGridDataColumn FieldName="Modified" Width="10%" MinWidth="80" />
+        </Columns>
+        <EditFormTemplate Context="EditFormContext">
+            @{
+                company = (CompanyModel)EditFormContext.EditModel;
+            }
+            <DxFormLayout CssClass="w-100">
+                <DxFormLayoutItem Caption="Company Code">
+                    <DxTextBox @bind-Text="@company.Code" />
+                </DxFormLayoutItem>
+                <DxFormLayoutItem Caption="Description">
+                    <DxTextBox @bind-Text="@company.Description" />
+                </DxFormLayoutItem>
+                <DxFormLayoutItem Caption="Industry">
+                    <DxTextBox @bind-Text="@company.Industry" />
+                </DxFormLayoutItem>
+            </DxFormLayout>
+        </EditFormTemplate>
+    </DxGrid>
+}
+@if(!isOrgStructureTabClicked)
+{
+  <div class="row">
+      <div class="col-6">
+            <DxGrid @ref="CompanyGrid"
+                    Data="Companies"
+                    PageSize="12"
+                    KeyFieldName="EmployeeId"
+                    ValidationEnabled="false"
+                    CustomizeEditModel="Grid_CustomizeEditModel"
+                    EditModelSaving="Grid_EditModelSaving"
+                    KeyboardNavigationEnabled="Params.KeyboardNavigationEnabled">
+                <Columns>
+                    <DxGridCommandColumn Width="160px" />
+                    <DxGridDataColumn FieldName="AccountId" MinWidth="80" />
+                    <DxGridDataColumn FieldName="Code" MinWidth="80" />
+                    <DxGridDataColumn FieldName="Description" MinWidth="100" />
+                    <DxGridDataColumn FieldName="Industry" MinWidth="120" />
+                    <DxGridDataColumn FieldName="CycleId" Width="10%" MinWidth="80" />
+                    <DxGridDataColumn FieldName="Created" Width="10%" MinWidth="80" />
+                    <DxGridDataColumn FieldName="Modified" Width="10%" MinWidth="80" />
+                </Columns>
+                <EditFormTemplate Context="EditFormContext">
+                    @{
+                        company = (CompanyModel)EditFormContext.EditModel;
+                    }
+                    <DxFormLayout CssClass="w-100">
+                        <DxFormLayoutItem Caption="Company Code">
+                            <DxTextBox @bind-Text="@company.Code" />
+                        </DxFormLayoutItem>
+                        <DxFormLayoutItem Caption="Description">
+                            <DxTextBox @bind-Text="@company.Description" />
+                        </DxFormLayoutItem>
+                        <DxFormLayoutItem Caption="Industry">
+                            <DxTextBox @bind-Text="@company.Industry" />
+                        </DxFormLayoutItem>
+                    </DxFormLayout>
+                </EditFormTemplate>
+            </DxGrid>
+      </div>
+      <div class="col-6">
+            <DxGrid @ref="OrgChartHeaderGrid"
+                    Data="Companies"
+                    PageSize="12"
+                    KeyFieldName="EmployeeId"
+                    ValidationEnabled="false"
+                    CustomizeEditModel="Grid_CustomizeEditModel"
+                    EditModelSaving="Grid_EditModelSaving"
+                    KeyboardNavigationEnabled="Params.KeyboardNavigationEnabled">
+                <Columns>
+                    <DxGridCommandColumn Width="160px" />
+                    <DxGridDataColumn FieldName="AccountId" MinWidth="80" />
+                    <DxGridDataColumn FieldName="Code" MinWidth="80" />
+                    <DxGridDataColumn FieldName="Description" MinWidth="100" />
+                    <DxGridDataColumn FieldName="Industry" MinWidth="120" />
+                    <DxGridDataColumn FieldName="CycleId" Width="10%" MinWidth="80" />
+                    <DxGridDataColumn FieldName="Created" Width="10%" MinWidth="80" />
+                    <DxGridDataColumn FieldName="Modified" Width="10%" MinWidth="80" />
+                </Columns>
+                <EditFormTemplate Context="EditFormContext">
+                    @{
+                        company = (CompanyModel)EditFormContext.EditModel;
+                    }
+                    <DxFormLayout CssClass="w-100">
+                        <DxFormLayoutItem Caption="Company Code">
+                            <DxTextBox @bind-Text="@company.Code" />
+                        </DxFormLayoutItem>
+                        <DxFormLayoutItem Caption="Description">
+                            <DxTextBox @bind-Text="@company.Description" />
+                        </DxFormLayoutItem>
+                        <DxFormLayoutItem Caption="Industry">
+                            <DxTextBox @bind-Text="@company.Industry" />
+                        </DxFormLayoutItem>
+                    </DxFormLayout>
+                </EditFormTemplate>
+            </DxGrid>
+      </div>
+  </div>
+}
+
+
+@code {
+    IGrid CompanyGrid { get; set; }
+    IGrid OrgChartHeaderGrid { get; set; }
+    List<CompanyModel> Companies = new();
+    private string showText;
+    private CompanyModel company;
+    bool isCompanyTabClicked = false;
+    bool isOrgStructureTabClicked = false;
+    void Grid_CustomizeEditModel(GridCustomizeEditModelEventArgs e)
+    {
+        // if (e.IsNew)
+        // {
+        //     Companies.Add(new
+        //         CompanyModel
+        //         {
+        //             AccountId = 1,
+        //             Code = "RGC",
+        //             Description = "Rigelclara",
+        //             Industry = "Technology",
+        //             CycleId = 1,
+        //             Created = DateTime.Now,
+        //             Modified = DateTime.Now
+        //         });
+        // }
+    }
+    async Task Grid_EditModelSaving(GridEditModelSavingEventArgs e)
+    {
+        company.AccountId = 2;
+        company.Created = DateTime.Now;
+        company.Modified = DateTime.Now;
+        if (e.IsNew)
+            await companyData.SaveCompanyDataAsync(company);
+
+        // else
+        //    await NwindDataService.UpdateEmployeeAsync((EditableEmployee)e.DataItem, editableEmployee);
+        // await UpdateDataAsync();
+    }
+    private void ShowText()
+    {
+        showText = "Test Text";
+        isCompanyTabClicked = true;
+    }
+    private void ShowCompanyGrid()
+    {
+        isCompanyTabClicked = false;
+        isOrgStructureTabClicked = true;
+    }
+    private void ShowOrgStructure()
+    {
+        isOrgStructureTabClicked = false;
+        isCompanyTabClicked = true;
+    }
+}

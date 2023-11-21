@@ -96,5 +96,7 @@
     <Build Include="Dbo\Stored Procedures\spOrganizationChartItem_GetAll.sql" />
     <Build Include="Dbo\Stored Procedures\spOrganizationChartItem_GetById.sql" />
     <Build Include="Dbo\Stored Procedures\spOrganizationChartItem_GetByHeaderId.sql" />
+    <Build Include="dbo\Tables\Company.sql" />
+    <Build Include="Dbo\Stored Procedures\spCompany_Insert.sql" />
   </ItemGroup>
 </Project>

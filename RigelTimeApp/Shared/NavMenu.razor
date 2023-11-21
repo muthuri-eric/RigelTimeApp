@@ -1,7 +1,11 @@
 ﻿<div class="sidebar @StateCssClass">
 <DxTreeView AllowSelectNodes="false" CssClass="app-sidebar">
     <Nodes>
-            <DxTreeViewNode NavigateUrl="organization" Text="Organization Structure"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="company" Text="Company Structure" Expanded="false">
+            <Nodes>
+                <DxTreeViewNode Name="" Text="Charts"/>
+            </Nodes>
+            </DxTreeViewNode>
             <DxTreeViewNode NavigateUrl="employeeslanding" Text="Employee Management"></DxTreeViewNode>
             <DxTreeViewNode NavigateUrl="clockinfo" Text="Clock Information"></DxTreeViewNode>
             <DxTreeViewNode NavigateUrl="devices" Text="Device Management"></DxTreeViewNode>
